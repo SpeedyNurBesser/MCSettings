@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings Generator for Minecraft</title>
+    <link rel="stylesheet" , href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/1efef3cf6a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <h2>Settings Generator for Minecraft v.1.0.0</h2>
+
+    <div id="namespace-group">
+      <label for="namespace">Namespace:</label>
+      <input id="namespace" type="text" placeholder="settings" autofocus />
+    </div>
+
+    <div class="element-group">
+      <div id="elementList"></div>
+
+      <button class="buttonColor buttonBlue" id="addElement">
+        <i class="fa-solid fa-circle-plus"></i>
+        Element
+        <i class="fa-solid fa-caret-down" style="color: #ffffff"></i>
+      </button>
+      <button class="buttonColor buttonRed" id="deleteAllElements">
+        <i class="fa-solid fa-circle-xmark"></i>
+        Delete all
+      </button>
+    </div>
+
+    <div class="popup button-group" id="addPopup">
+      <button id="addText">Text</button>
+      <button id="addToggle">Toggle</button>
+      <button id="addInputInt">Input Integer</button>
+      <button id="addInputFloat">Input Float</button>
+      <button id="addInputString">Input String</button>
+      <button id="addSingleSelect">Select</button>
+      <button id="addMultiSelect">MultiSelect</button>
+      <button id="addLineBreak">Line Break</button>
+    </div>
+
+    <br />
+
+    <p style="color: aliceblue">
+      Hallo, das ist ein Text-Abschnitt, der hoffentlich nicht unnötig nach
+      unten verschoben wird.
+    </p>
+
+    <button
+      class="buttonColor buttonGreen"
+      onclick="alert('It does not do anything... yet!')"
+    >
+      Generate and Download Pack
+    </button>
+
+    <script src="node_modules/sortablejs/Sortable.js"></script>
+    <script src="script.js"></script>
+    <script src="elementHandling.js"></script>
+    <script src="generatePack.js"></script>
+  </body>
+</html>

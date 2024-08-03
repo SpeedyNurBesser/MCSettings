@@ -1,0 +1,146 @@
+body {
+  background-color: #222222;
+  text-align: center;
+  /*width: 80%;
+  margin: auto; Du kannst einfach die Width hier händern, i.e. überall sonst nichts ändern!*/
+}
+
+h2 {
+  color: lightgray;
+  text-align: left;
+  font: 20px Arial;
+  padding-top: 10px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.buttonColor {
+  border: none;
+  color: white;
+  padding-inline: 6px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block;*/
+  font-size: 14px;
+  margin: 4px 2px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Flattastic Pro Color Palette by erigon (not the grey)*/
+.buttonGrey {
+  /*background-color: #434a54;*/
+  background-color: #6c757d;
+}
+.buttonBlue {
+  background-color: #5d9cec;
+}
+.buttonRed {
+  background-color: #ed5565;
+}
+.buttonGreen {
+  background-color: #a0d468;
+}
+
+.buttonGrey:hover {
+  /*background-color: #656d78;*/
+  background-color: #626a72;
+  transition-duration: 0.4s;
+}
+.buttonBlue:hover {
+  background-color: #4a89dc;
+  transition-duration: 0.4s;
+}
+.buttonRed:hover {
+  background-color: #da4453;
+  transition-duration: 0.4s;
+}
+.buttonGreen:hover {
+  background-color: #8cc152;
+  transition-duration: 0.4s;
+}
+
+.popup {
+  display: none;
+  margin: auto;
+  width: 50%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 8px 0;
+}
+
+.button-group button {
+  color: black;
+  background-color: #fff;
+  border-color: transparent;
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+.button-group button:hover {
+  background-color: #f8f9fa;
+}
+
+.element-group {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  width: 80%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#namespace-group {
+  padding-bottom: 10px;
+  width: 100%;
+  margin: auto;
+}
+
+input[type="text"] {
+  border-radius: 6px;
+}
+
+#namespace {
+  width: 65%;
+}
+
+label {
+  color: lightgray;
+  text-align: left;
+  font: 15px Arial;
+  width: 35%;
+}
+
+.fa-grip-vertical {
+  cursor: grab;
+}
+
+.element {
+  text-align: left;
+  width: 96%;
+  padding: 4px;
+  margin: auto;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+}
+
+.element input {
+  height: 40px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.collapsedElement {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
