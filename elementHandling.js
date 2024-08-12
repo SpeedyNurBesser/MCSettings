@@ -18,10 +18,11 @@ function toggleCollapsible(id) {
 function duplicateElement(id, elementType) {
   let baseElement = document.getElementById(id);
 
-  elementList.insertAdjacentHTML(
-    "beforeend",
+  baseElement.insertAdjacentHTML(
+    "afterend",
     giveElementHTML(HTMLOfElementTypes[elementType])
   );
+
   let duplicatedElement = document.getElementById("element_" + CURRENT_ID);
 
   let baseInputs = baseElement.querySelectorAll("input");
