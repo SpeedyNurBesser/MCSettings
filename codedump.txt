@@ -20,3 +20,6 @@
 <footer>
     <img src="https://brainmade.org/white-logo.png" style="width: 20%; cursor: pointer;" href="https://brainmade.org/">
 </footer>
+
+
+<input type="color" value="#ff0000" title="Choose color"><input title="Italic" class="styleCheckbox italicCheckbox" type="checkbox" value="Italic"><input class="styleCheckbox boldCheckbox" type="checkbox" value="Bold" title="Bold"><input title="Underlined" class="styleCheckbox underlinedCheckbox" type="checkbox" value="Underlined"><input title="Strikethrough" class="styleCheckbox strikethroughCheckbox" type="checkbox" value="Strikethrough"><input class="styleCheckbox obfuscatedCheckbox" title="Obfuscated" type="checkbox" value="Obfuscated">
