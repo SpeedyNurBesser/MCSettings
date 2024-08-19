@@ -18,3 +18,9 @@ Sortable.create(elementList, {
   handle: ".fa-grip-vertical",
   animation: 150,
 });
+
+function downloadZip(zip, name = "zipFile.zip") {
+  zip.generateAsync({ type: "blob" }).then(function (content) {
+    saveAs(content, name);
+  });
+}

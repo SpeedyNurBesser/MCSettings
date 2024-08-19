@@ -51,16 +51,16 @@
       unten verschoben wird.
     </p>
 
-    <button
-      class="buttonColor buttonGreen"
-      onclick="alert('It does not do anything... yet!')"
-    >
+    <button class="buttonColor buttonGreen" id="packButton">
       Generate and Download Pack
     </button>
 
     <script src="node_modules/sortablejs/Sortable.js"></script>
     <script src="script.js"></script>
     <script src="elementHandling.js"></script>
+    <script src="node_modules/jszip/dist/jszip.js"></script>
+    <script src="node_modules/file-saver/dist/FileSaver.js"></script>
+    <script src="getCommands.js"></script>
     <script src="generatePack.js"></script>
   </body>
 </html>
