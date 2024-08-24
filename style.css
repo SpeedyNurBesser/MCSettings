@@ -208,3 +208,8 @@ input[type="checkbox"].styleCheckbox {
   color: #222222;
   font: 15px Arial;
 }
+
+#errorText {
+  color: #ed5565;
+  font: 15px Arial;
+}
