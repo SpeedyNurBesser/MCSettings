@@ -78,9 +78,9 @@ function generateDatapackZip() {
       let options = commaSeperatedStringToArray(inputs[20].value);
 
       for (let i = 0; i < defaultOptions.length; i++) {
-        if (options.indexOf(defaultOptions[i] === -1)) {
+        if (options.indexOf(defaultOptions[i]) === -1) {
           sendError(
-            `${id} - You can't specify option as default that isn't specified.`
+            `${id} - You can't specify an option as default that isn't specified.`
           );
           return false;
         }
@@ -110,7 +110,7 @@ function generateDatapackZip() {
         return false;
       }
 
-      if (!isInt(acceptedRange)[0] || !isInt(acceptedRange)[1]) {
+      if (!isInt(acceptedRange[0]) || !isInt(acceptedRange[1])) {
         sendError(
           `${id} - The accepted range must be "made" of integers, i.e. 5..25, not 5.5..42.0 or e..f`
         );
@@ -122,12 +122,15 @@ function generateDatapackZip() {
 
       if (acceptedRange[0] >= acceptedRange[1]) {
         sendError(
-          `${id} - The accepted range must be formatted correctly: "Min..Max" <br>Min can not be bigger than Max`
+          `${id} - The accepted range must be formatted correctly: "Min..Max" <br>Min must not be bigger than Max`
         );
         return false;
       }
 
-      if (!(acceptedRange[0] >= defaultValue <= acceptedRange[1])) {
+      if (
+        !(acceptedRange[0] <= defaultValue) ||
+        !(defaultValue <= acceptedRange[1])
+      ) {
         sendError(`${id} - Default value must be inside the accepted range.`);
         return false;
       }
