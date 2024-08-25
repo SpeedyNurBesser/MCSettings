@@ -96,13 +96,19 @@ function generateFunctionZip() {
     if (type === "SELECT" || type === "MULTI") {
       let defaultOptions = commaSeperatedStringToArray(inputs[19].value);
       let options = commaSeperatedStringToArray(inputs[20].value);
+      if (!options) {
+        sendError(`${id} - Options can't be empty`);
+        return false;
+      }
 
-      for (let i = 0; i < defaultOptions.length; i++) {
-        if (options.indexOf(defaultOptions[i]) === -1) {
-          sendError(
-            `${id} - You can't specify an option as default that isn't specified.`
-          );
-          return false;
+      if (defaultOptions) {
+        for (let i = 0; i < defaultOptions.length; i++) {
+          if (options.indexOf(defaultOptions[i]) === -1) {
+            sendError(
+              `${id} - You can't specify an option as default that isn't specified.`
+            );
+            return false;
+          }
         }
       }
     }
@@ -194,7 +200,7 @@ function generateFunctionZip() {
   pack.file("settings.mcfunction", settings);
   pack.file("setup.mcfunction", setup);
   pack.file("reset.mcfunction", resetAll);
-  pack.file("restore.txt", generateRestoreFile());
+  pack.file("MCSettings_restore.txt", generateRestoreFile());
 
   return zip;
 }
@@ -283,7 +289,7 @@ function generateRestoreFile() {
 const restoreButton = document.getElementById("restoreButton");
 restoreButton.addEventListener("click", function () {
   document.getElementById("elementList").innerHTML = prompt(
-    "Paste text of restore.txt"
+    "Paste text of MCSettings_restore.txt"
   );
 });
 
@@ -294,6 +300,6 @@ saveButton.addEventListener("click", function () {
     let blob = new Blob([restoreFile], {
       type: "text/plain;charset=utf-8",
     });
-    saveAs(blob, "restore.txt");
+    saveAs(blob, "MCSettings_restore.txt");
   }
 });

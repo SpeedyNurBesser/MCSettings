@@ -81,7 +81,12 @@ function sendError(message) {
 }
 
 function commaSeperatedStringToArray(str) {
-  return str.split(",");
+  let output = str.split(",");
+  if (!(output.length === 1 && output[0] === "")) {
+    return output;
+  } else {
+    return false;
+  }
 }
 
 function isInt(str) {
