@@ -1,3 +1,5 @@
+const PACK_FORMAT = 48;
+
 let SANITIZED_CHARS = { '"': '\\"' };
 
 function sanitizeString(str) {
@@ -8,7 +10,7 @@ function sanitizeString(str) {
   return str;
 }
 
-function generateDatapackZip() {
+function generateFunctionZip() {
   /// FileStructure
   // settings.mcfunction
   // setup.mcfunction
@@ -32,8 +34,18 @@ function generateDatapackZip() {
     namespace = "settings";
   }
 
+  let numberOfLineBreak = 0;
+  if (document.getElementById("lineBreaks").value != "") {
+    numberOfLineBreak = document.getElementById("lineBreaks").value;
+    if (!isInt(numberOfLineBreak)) {
+      sendError("The number of line breaks must be an integer.");
+      return false;
+    }
+  }
+
   let zip = new JSZip();
-  let pack = zip.folder(namespace);
+  let namespaceFolder = zip.folder(namespace);
+  let pack = namespaceFolder.folder("function");
 
   let displayFolder = pack.folder("display");
   let changeFolder = pack.folder("change");
@@ -43,7 +55,15 @@ function generateDatapackZip() {
   let elements = document.getElementById("elementList").childNodes;
 
   let settings = "";
-  let setup = `scoreboard objectives add ${namespace}_validation dummy\nfunction ${namespace}:reset`;
+  if (numberOfLineBreak !== 0) {
+    settings += 'tellraw @s {"text":"';
+    for (let i = 0; i < numberOfLineBreak; i++) {
+      settings += "\\n";
+    }
+    settings += '"}\n';
+  }
+
+  let setup = `scoreboard objectives add ${namespace}_validation dummy\nscoreboard players add $onlyOnce ${namespace}_validation 1\nfunction ${namespace}:reset`;
   let resetAll = "";
 
   for (let i = 0; i < elements.length; i++) {
@@ -174,17 +194,106 @@ function generateDatapackZip() {
   pack.file("settings.mcfunction", settings);
   pack.file("setup.mcfunction", setup);
   pack.file("reset.mcfunction", resetAll);
+  pack.file("restore.txt", generateRestoreFile());
 
   return zip;
 }
 
-const packButton = document.getElementById("packButton");
+async function generateDatapackZip() {
+  let functions = generateFunctionZip();
+  if (!functions) {
+    return false;
+  }
 
+  let namespace = "";
+  if (document.getElementById("namespace").value != "") {
+    namespace = document.getElementById("namespace").value;
+  } else {
+    namespace = "settings";
+  }
+
+  let datapack = new JSZip();
+
+  datapack.file(
+    "pack.mcmeta",
+    `{"pack": {"description": "A datapack with settings\ngenerated with MCSettings","pack_format": ${PACK_FORMAT}}}`
+  );
+  let dataFolder = datapack.folder("data");
+  dataFolder.file(
+    "minecraft/tags/function/load.json",
+    `{"values": ["${namespace}:start"]}`
+  );
+
+  // merge functions into dataFolder
+  dataFolder = await dataFolder.loadAsync(
+    await functions.generateAsync({ type: "blob" }),
+    {
+      createFolders: true,
+    }
+  );
+
+  dataFolder.file(
+    `${namespace}/function/start.mcfunction`,
+    `execute if score $onlyOnce ${namespace}_validation matches ..0 run function ${namespace}:setup`
+  );
+  downloadZip(datapack, "MCSettings_Pack.zip");
+}
+
+const functionButton = document.getElementById("functionButton");
+functionButton.addEventListener("click", function () {
+  let functions = generateFunctionZip();
+
+  if (functions) {
+    downloadZip(functions, "MCSettings_Functions.zip");
+    sendError("");
+  }
+});
+
+const packButton = document.getElementById("packButton");
 packButton.addEventListener("click", function () {
   let pack = generateDatapackZip();
-
   if (pack) {
     downloadZip(pack, "MCSettings_Pack.zip");
-    sendError("");
+  }
+});
+
+function generateRestoreFile() {
+  // just takes the HTML of all elements and puts it into a single string
+  // as the values of HTML elements aren't saved, when getting its HTML (using element.innerHTML), we must artificially set it
+  // we just set the input's "value" attribute (or "checked" attribute for checkboxes) to the input's value attribute (sounds weird I know)
+  let elements = document.getElementById("elementList").childNodes;
+  let output = "";
+
+  for (let element of elements) {
+    let inputs = element.querySelectorAll("input");
+
+    for (let input of inputs) {
+      if (input.type === "checkbox" && input.checked === true) {
+        input.setAttribute("checked", true);
+      } else {
+        input.setAttribute("value", input.value);
+      }
+    }
+
+    output += element.outerHTML;
+  }
+  return output;
+}
+
+const restoreButton = document.getElementById("restoreButton");
+restoreButton.addEventListener("click", function () {
+  document.getElementById("elementList").innerHTML = prompt(
+    "Paste text of restore.txt"
+  );
+});
+
+const saveButton = document.getElementById("saveButton");
+saveButton.addEventListener("click", function () {
+  let restoreFile = generateRestoreFile();
+  if (restoreFile !== "") {
+    let blob = new Blob([restoreFile], {
+      type: "text/plain;charset=utf-8",
+    });
+    saveAs(blob, "restore.txt");
   }
 });

@@ -12,12 +12,69 @@
   </head>
 
   <body>
-    <h2>Settings Generator for Minecraft v.1.0.0</h2>
+    <h2>
+      Settings Generator for Minecraft v.1.0.0
+      <div style="float: right">
+        <button
+          class="buttonColor buttonRed"
+          onclick="window.open('https://github.com/SpeedyNurBesser/MCSettings/issues/new')"
+          title="Report an issue"
+        >
+          <i
+            class="fa-solid fa-triangle-exclamation"
+            style="color: #ffffff"
+          ></i>
+        </button>
+        <button
+          class="buttonColor buttonGreen"
+          onclick="window.open('https://github.com/SpeedyNurBesser/MCSettings/blob/main/README.md')"
+          title="See Documentation"
+        >
+          <i class="fa-solid fa-book" style="color: #ffffff"></i>
+        </button>
+        <button
+          class="buttonColor buttonGrey"
+          onclick="window.open('https://github.com/SpeedyNurBesser/MCSettings')"
+          title="See GitHub Project"
+        >
+          <i class="fa-brands fa-github" style="color: #ffffff"></i>
+        </button>
+      </div>
+      <p class="outsideLabel">
+        inspired by
+        <a
+          style="cursor: pointer"
+          onclick="window.open('https://www.minecraftjson.com/')"
+          >MinecraftJSON</a
+        >
+      </p>
+    </h2>
 
-    <div id="namespace-group">
-      <label class="namespaceLabel" for="namespace">Namespace:</label>
-      <input id="namespace" type="text" placeholder="settings" autofocus />
+    <br />
+
+    <div class="outsideInputGroup">
+      <label class="outsideLabel" for="namespace">Namespace</label>
+      <input
+        class="outsideInput"
+        id="namespace"
+        type="text"
+        placeholder="settings"
+        autofocus
+      />
     </div>
+
+    <div class="outsideInputGroup">
+      <label class="outsideLabel" for="lineBreaks">Prepend line breaks</label>
+      <input
+        class="outsideInput"
+        id="lineBreaks"
+        type="text"
+        placeholder="100"
+        value="20"
+      />
+    </div>
+
+    <br />
 
     <div class="element-group">
       <div id="elementList"></div>
@@ -49,9 +106,26 @@
     <p id="errorText"></p>
 
     <button class="buttonColor buttonGreen" id="packButton">
-      Generate and Download Pack
+      <i class="fa-solid fa-floppy-disk" style="color: #ffffff"></i> Download
+      Datapack
     </button>
-    /
+
+    <button class="buttonColor buttonGreen" id="functionButton">
+      <i class="fa-solid fa-floppy-disk" style="color: #ffffff"></i> Download
+      Functions
+    </button>
+
+    <br />
+    <br />
+
+    <button class="buttonColor buttonOrange" id="restoreButton">
+      <i class="fa-solid fa-file-import" style="color: #ffffff"></i> Restore
+    </button>
+
+    <button class="buttonColor buttonOrange" id="saveButton">
+      <i class="fa-solid fa-file-export" style="color: #ffffff"></i> Save
+    </button>
+
     <script src="node_modules/sortablejs/Sortable.js"></script>
     <script src="script.js"></script>
     <script src="elementHandling.js"></script>
@@ -60,4 +134,20 @@
     <script src="getCommands.js"></script>
     <script src="generatePack.js"></script>
   </body>
+  <footer>
+    <br /><br />
+    <hr style="width: 80%" />
+    <p
+      style="
+        padding-left: 10%;
+        padding-right: 10%;
+        font: 10px Arial;
+        color: lightgray;
+        float: left;
+      "
+    >
+      "Minecraft" content and materials are trademarks and copyrights of Mojang
+      and its licensors. This site is not affiliated with Mojang.
+    </p>
+  </footer>
 </html>

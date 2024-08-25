@@ -2,7 +2,7 @@ body {
   background-color: #222222;
   text-align: center;
   /*width: 80%;
-  margin: auto; Du kannst einfach die Width hier händern, i.e. überall sonst nichts ändern!*/
+  /margin: auto; Du kannst einfach die Width hier händern, i.e. überall sonst nichts ändern!*/
 }
 
 h2 {
@@ -45,6 +45,9 @@ h2 {
 .buttonGreen {
   background-color: #a0d468;
 }
+.buttonOrange {
+  background-color: #f3a96a;
+}
 
 .buttonGrey:hover {
   /*background-color: #656d78;*/
@@ -61,6 +64,10 @@ h2 {
 }
 .buttonGreen:hover {
   background-color: #8cc152;
+  transition-duration: 0.4s;
+}
+.buttonOrange:hover {
+  background-color: #d8a149;
   transition-duration: 0.4s;
 }
 
@@ -97,25 +104,27 @@ h2 {
   padding-bottom: 15px;
 }
 
-#namespace-group {
+.outsideInputGroup {
   padding-bottom: 10px;
-  width: 100%;
+  width: 80%;
   margin: auto;
+  text-align: left;
 }
 
 input[type="text"] {
   border-radius: 6px;
 }
 
-#namespace {
-  width: 65%;
+.outsideInput {
+  width: 75%;
+  float: right;
 }
 
-.namespaceLabel {
+.outsideLabel {
   color: lightgray;
   text-align: left;
   font: 15px Arial;
-  width: 35%;
+  width: 25%;
 }
 
 .fa-grip-vertical {

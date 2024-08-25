@@ -91,3 +91,7 @@ function isInt(str) {
 function isFloat(str) {
   return !isNaN(parseFloat(str)) && isFinite(str);
 } // https://stackoverflow.com/a/1830844
+
+window.onbeforeunload = function () {
+  return "";
+};

@@ -55,3 +55,36 @@
 //    return true;
 //  }
 //}
+
+
+// cool altough inefficient on so many levels:
+
+  for (let element of elements) {
+    let elementHTML = element.outerHTML;
+    let inputs = element.querySelectorAll("input");
+
+    let oldAndNewHTML = {};
+
+    for (let input of inputs) {
+      let inputHTML = [
+        input.outerHTML.slice(0, input.outerHTML.length - 1),
+        ` value="${inputs[0].value}"`,
+        ">",
+      ].join("");
+
+      oldAndNewHTML[input.outerHTML] = inputHTML;
+    }
+
+    let oldAndNewHTMLKeys = Object.keys(oldAndNewHTML);
+    for (let i = 0; i < inputs.length; i++) {
+      let beforeAndAfterInput = elementHTML.split(oldAndNewHTMLKeys[i]);
+
+      elementHTML = [
+        beforeAndAfterInput[0],
+        oldAndNewHTML[oldAndNewHTMLKeys[i]],
+        beforeAndAfterInput[1],
+      ].join("");
+    }
+
+    output += elementHTML;
+  }
