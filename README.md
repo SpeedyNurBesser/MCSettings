@@ -69,6 +69,8 @@ Text Elements result in regular Text to be displayed, when the settings are call
 
 Input the text you want to display in the text field. Change the style of the element, i.e. color, italic, bold, ..., by clicking the edit button at the left of text field.
 
+![Text](https://github.com/user-attachments/assets/f75ed42b-6ebc-4773-b084-8468d5c6176e)
+
 ### 2. Toggle <a name = "toggle"></a>
 
 Toggle elements are settings that can be toggled either on or off.
@@ -82,6 +84,8 @@ Further down you can add children elements (by giving their ids seperated by com
 At the bottom, you can also specify a NBTPath. It defaults to the element_id, if omitted.
 
 `/execute if data storage <NAMESPACE>:settings {<NBTPath>:true} run <YOUR COMMAND>`
+
+![Toggle](https://github.com/user-attachments/assets/3d587524-b927-462e-b5b2-d5711bec8c67)
 
 ### 3. Input Integer <a name = "int"></a>
 
@@ -97,6 +101,8 @@ To retrieve this number for use in your datapack, use [function macros](<https:/
 
 In-game, users can change the value by clicking on it, which will result in a command being copied into the their chat window, in which they will have to set the value.
 
+![Integer](https://github.com/user-attachments/assets/81620648-fa45-4908-8f0b-ee6496fb8d29)
+
 ### 4. Input Float <a name = "float"></a>
 
 Input Float elements allow the user to input a floating point value (decimal number) for use in your datapack.
@@ -110,6 +116,8 @@ At the bottom, you can also specify a NBTPath. It defaults to the element_id, if
 To retrieve this number for use in your datapack, use [function macros](<https://minecraft.wiki/w/Function_(Java_Edition)#Macros>). A function call with macros may look like this: `/function <YOUR_FUNCTION> with storage <NAMESPACE>:settings <NBTPath>`
 
 In-game, users can change the value by clicking on it, which will result in a command being copied into the their chat window, in which they will have to set the value.
+
+![Float](https://github.com/user-attachments/assets/b65c163e-3151-469d-a199-1537891c71c3)
 
 ### 5. Input String <a name = "string"></a>
 
@@ -125,6 +133,8 @@ To retrieve this number for use in your datapack, use [function macros](<https:/
 
 In-game, users can change the value by clicking on it, which will result in a command being copied into the their chat window, in which they will have to set the value.
 
+![String](https://github.com/user-attachments/assets/acab0297-18c4-47c5-b035-6ccbdfc00ebd)
+
 ### 6. Select <a name = "select"></a>
 
 A Select element allows the user to select one option from a list of given options.
@@ -138,6 +148,8 @@ Beneath that, you can specify the option that is activated by default.
 Beneath that, you can specify all options, seperated by commas.
 
 To check, if a specific option is activated use the following command: `/execute if data storage <NAMESPACE>:settings {<NBT_PATH>:[{<OPTION_NAME>:true}]} run <YOUR COMMAND>`.
+
+![select_element](https://github.com/user-attachments/assets/c69277d1-cf09-466e-8a14-a3248d2167f8)
 
 ### 7. Multi-Select <a name = "multi"></a>
 
