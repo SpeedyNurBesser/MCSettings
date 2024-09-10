@@ -397,7 +397,6 @@ function getSelectTellrawCommand(
     command += `execute if data storage ${target} {${nbtPath}:[{"${options[i]}":true}]} run tellraw @s [{"text":"${str}", "color":"${style[0]}", "italic":${style[1]}, "bold":${style[2]}, "underlined":${style[3]},"strikethrough":${style[4]},"obfuscated":${style[5]}}`;
     for (let j = 0; j < options.length; j++) {
       // generates the different option clickables
-      // TODO: add run command /function namespace:change/id_option_j
       if (i === j) {
         command += `,{"text":"[${options[j]}]", "color":"${selectedStyle[0]}", "italic":${selectedStyle[1]}, "bold":${selectedStyle[2]}, "underlined":${selectedStyle[3]},"strikethrough":${selectedStyle[4]},"obfuscated":${selectedStyle[5]},"clickEvent":{"action":"run_command","value":"/function ${namespace}:change/${id}_option_${j}_deactivate"}}, {"text":" "}`;
       } else {
@@ -406,6 +405,17 @@ function getSelectTellrawCommand(
     }
     command += "]\n";
   }
+  // generate command for the option of no option being selected
+  command += "execute ";
+  for (let i = 0; i < options.length; i++) {
+    command += `if data storage ${target} {${nbtPath}:[{"${options[i]}":false}]} `;
+  }
+  command += `run tellraw @s [{"text":"${str}", "color":"${style[0]}", "italic":${style[1]}, "bold":${style[2]}, "underlined":${style[3]},"strikethrough":${style[4]},"obfuscated":${style[5]}}`;
+  for (let i = 0; i < options.length; i++) {
+    command += `,{"text":"[${options[i]}]", "color":"${unselectedStyle[0]}", "italic":${unselectedStyle[1]}, "bold":${unselectedStyle[2]}, "underlined":${unselectedStyle[3]},"strikethrough":${unselectedStyle[4]},"obfuscated":${unselectedStyle[5]},"clickEvent":{"action":"run_command","value":"/function ${namespace}:change/${id}_option_${i}_activate"}}, {"text":" "}`;
+  }
+  command += "]";
+
   return command;
 }
 function getMultiTellrawCommand(
